@@ -43,7 +43,7 @@ public class MovieCatalogResource {
         assert ratings != null;
         return ratings.getUserRatings().stream()
                 .map(rating -> {
-//
+
 //                    Movie movie = webClientBuilder.build()
 //                            .get()
 //                            .uri("http://127.0.0.1:8082/movies/" + rating.getMovieId())
