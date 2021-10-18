@@ -3,6 +3,8 @@ package com.rahi.moviecatelogservice.controller;
 import com.rahi.moviecatelogservice.model.CatalogItem;
 import com.rahi.moviecatelogservice.model.Movie;
 import com.rahi.moviecatelogservice.model.UserRating;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +27,18 @@ public class MovieCatalogResource {
 
     private final RestTemplate restTemplate;
     private final WebClient.Builder webClientBuilder;
+    private final DiscoveryClient discoveryClient;
 
-    public MovieCatalogResource( RestTemplate restTemplate, WebClient.Builder webClientBuilder ) {
+    public MovieCatalogResource( RestTemplate restTemplate, WebClient.Builder webClientBuilder,
+                                 DiscoveryClient discoveryClient ) {
         this.restTemplate = restTemplate;
         this.webClientBuilder = webClientBuilder;
+        this.discoveryClient = discoveryClient;
+    }
+
+    @GetMapping("/getInstances")
+    public List<ServiceInstance> getServiceInstances() {
+        return discoveryClient.getInstances("ratings-data-service");
     }
 
     @GetMapping("/{userId}")
