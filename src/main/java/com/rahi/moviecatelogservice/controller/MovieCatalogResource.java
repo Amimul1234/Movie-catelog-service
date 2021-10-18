@@ -2,7 +2,7 @@ package com.rahi.moviecatelogservice.controller;
 
 import com.rahi.moviecatelogservice.model.CatalogItem;
 import com.rahi.moviecatelogservice.model.Movie;
-import com.rahi.moviecatelogservice.model.Rating;
+import com.rahi.moviecatelogservice.model.UserRating;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,12 +37,11 @@ public class MovieCatalogResource {
         //For each one call info service and get details
         //Put them all together
 
-        List<Rating> ratings = List.of(
-                new Rating("1234", 4),
-                new Rating("5678", 3)
-        );
+        UserRating ratings = restTemplate.getForObject("http://localhost:8083/ratingsData/user/" + userId,
+                UserRating.class);
 
-        return ratings.stream()
+        assert ratings != null;
+        return ratings.getUserRatings().stream()
                 .map(rating -> {
 //
 //                    Movie movie = webClientBuilder.build()
