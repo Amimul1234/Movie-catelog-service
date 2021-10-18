@@ -44,16 +44,16 @@ public class MovieCatalogResource {
 
         return ratings.stream()
                 .map(rating -> {
+//
+//                    Movie movie = webClientBuilder.build()
+//                            .get()
+//                            .uri("http://127.0.0.1:8082/movies/" + rating.getMovieId())
+//                            .retrieve()
+//                            .bodyToMono(Movie.class)
+//                            .block();
 
-                    Movie movie = webClientBuilder.build()
-                            .get()
-                            .uri("http://127.0.0.1:8082/movies/" + rating.getMovieId())
-                            .retrieve()
-                            .bodyToMono(Movie.class)
-                            .block();
 
-
-//                    Movie movie = restTemplate.getForObject("http://127.0.0.1:8082/movies/" + rating.getMovieId(), Movie.class);
+                    Movie movie = restTemplate.getForObject("http://127.0.0.1:8082/movies/" + rating.getMovieId(), Movie.class);
 
                     assert movie != null;
                     return new CatalogItem(movie.getName(), "Test", 4);
