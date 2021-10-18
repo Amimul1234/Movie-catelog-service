@@ -32,9 +32,11 @@ public class MovieCatalogResource {
 
         UserRating userRating = restTemplate.getForObject("http://ratings-data-service/ratingsdata/user/" + userId, UserRating.class);
 
+        assert userRating != null;
         return userRating.getUserRatings().stream()
                 .map(rating -> {
                     Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
+                    assert movie != null;
                     return new CatalogItem(movie.getName(), movie.getDescription(), rating.getRating());
                 })
                 .collect(Collectors.toList());
