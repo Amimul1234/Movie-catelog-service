@@ -22,13 +22,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/catalog")
 public class MovieCatalogResource {
 
+    private final RestTemplate restTemplate;
+
+    public MovieCatalogResource( RestTemplate restTemplate ) {
+        this.restTemplate = restTemplate;
+    }
+
     @GetMapping("/{userId}")
     public List<CatalogItem> getCatalog( @PathVariable("userId") String userId ) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-
-        //get all related movie IDs
         //For each one call info service and get details
         //Put them all together
 
@@ -44,6 +46,5 @@ public class MovieCatalogResource {
                     return new CatalogItem(movie.getName(), "Test", 4);
                 })
                 .collect(Collectors.toList());
-
     }
 }
