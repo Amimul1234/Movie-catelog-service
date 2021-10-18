@@ -37,7 +37,7 @@ public class MovieCatalogResource {
         //For each one call info service and get details
         //Put them all together
 
-        UserRating ratings = restTemplate.getForObject("http://localhost:8083/ratingsData/user/" + userId,
+        UserRating ratings = restTemplate.getForObject("http://ratings-data-service/ratingsData/user/" + userId,
                 UserRating.class);
 
         assert ratings != null;
@@ -52,7 +52,7 @@ public class MovieCatalogResource {
 //                            .block();
 
 
-                    Movie movie = restTemplate.getForObject("http://127.0.0.1:8082/movies/" + rating.getMovieId(), Movie.class);
+                    Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
 
                     assert movie != null;
                     return new CatalogItem(movie.getName(), "Test", 4);
