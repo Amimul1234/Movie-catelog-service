@@ -31,7 +31,6 @@ public class MovieCatalogResource {
 
     @RequestMapping("/{userId}")
     public List<CatalogItem> getCatalog( @PathVariable("userId") String userId ) {
-
         UserRating userRating = userRatingInfo.getUserRating(userId);
 
         assert userRating != null;

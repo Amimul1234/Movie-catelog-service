@@ -28,7 +28,7 @@ public class UserRatingInfo {
         return restTemplate.getForObject("http://ratings-data-service/ratingsdata/user/" + userId, UserRating.class);
     }
 
-    private UserRating getFallBackUserRating( String userId ) {
+    public UserRating getFallBackUserRating( String userId ) {
 
         UserRating userRating = new UserRating();
 
