@@ -11,8 +11,8 @@
     <groupId>com.rahi</groupId>
     <artifactId>movie-catelog-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Movie Catelog Service</name>
-    <description>Movie Catelog Service</description>
+    <name>Movie Catalog Service</name>
+    <description>Movie Catalog Service</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -42,7 +42,7 @@
 
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId >org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <version>3.0.4</version>
         </dependency>
